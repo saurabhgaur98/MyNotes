@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">My Notes</string>
+
+    <string name="search">Search</string>
+    <string name="edit_note">Edit Note.</string>
+    <string name="no_notes_found">No Notes Found</string>
+</resources>
