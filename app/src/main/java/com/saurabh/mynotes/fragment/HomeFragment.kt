@@ -55,10 +55,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
             it.findNavController().navigate(R.id.action_homeFragment_to_addNoteFragment)
         }
 
-        binding.seeFavNotes.setOnClickListener{
-            val intent = Intent(requireContext(), FavoriteNotes::class.java)
-            startActivity(intent)
-        }
+//        binding.seeFavNotes.setOnClickListener{
+//            val intent = Intent(requireContext(), FavoriteNotes::class.java)
+//            startActivity(intent)
+//        }
 
         setupHomeRecyclerView()
     }
@@ -162,6 +162,14 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
     }
 
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-        return false
+        return when(menuItem.itemId){
+            R.id.favoriteNotes -> {
+                val intent = Intent(requireContext(), FavoriteNotes::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> false
+
+        }
     }
 }

@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.saurabh.mynotes"
-        minSdk = 24
+        minSdk = 21
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"

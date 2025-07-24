@@ -28,7 +28,7 @@ class FavNoteAdapter(
             // Bind note data to the UI
             noteTitle.text = currentNote.noteTitle
             noteDesc.text = currentNote.noteDesc
-            addFavBtn.setImageResource(R.drawable.fav_star)
+            addFavBtn.setImageResource(R.drawable.favorite_icon)
 
             // Handle the favorite button click
             addFavBtn.setOnClickListener {

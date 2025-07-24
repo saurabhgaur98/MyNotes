@@ -9,4 +9,9 @@
         app:showAsAction="ifRoom"
         app:actionViewClass="androidx.appcompat.widget.SearchView" />
 
+    <item
+        android:id="@+id/favoriteNotes"
+        android:icon="@drawable/favorite_icon_28"
+        android:title="@string/favorite"
+        app:showAsAction="always" />
 </menu>

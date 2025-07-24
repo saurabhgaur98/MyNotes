@@ -39,13 +39,13 @@ class NoteAdapter(private val onFavoriteClick: (Note) -> Unit): RecyclerView.Ada
 
         holder.itemBinding.noteTitle.text = currentNote.noteTitle
         holder.itemBinding.noteDesc.text = currentNote.noteDesc
-        holder.itemBinding.addFavBtn.setImageResource(if (currentNote.isFavorite) R.drawable.fav_star else R.drawable.unfav_star)
+        holder.itemBinding.addFavBtn.setImageResource(if (currentNote.isFavorite) R.drawable.favorite_icon else R.drawable.not_fav_icon)
 
         // Handle favorite button click
         holder.itemBinding.addFavBtn.setOnClickListener {
             currentNote.isFavorite = !currentNote.isFavorite // Toggle the favorite status
             holder.itemBinding.addFavBtn.setImageResource(
-                if (currentNote.isFavorite) R.drawable.fav_star else R.drawable.unfav_star
+                if (currentNote.isFavorite) R.drawable.favorite_icon else R.drawable.not_fav_icon
             )
             onFavoriteClick(currentNote) // Notify the fragment about the status change
             // Submit the updated list to the adapter after toggling
