@@ -1,9 +1,11 @@
 package com.saurabh.mynotes.adapter
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.saurabh.mynotes.MainActivity
 import com.saurabh.mynotes.model.Note
 import com.saurabh.mynotes.R
 import com.saurabh.mynotes.databinding.NoteLayoutBinding
@@ -35,6 +37,14 @@ class FavNoteAdapter(
                 currentNote.isFavorite = false // Set the favorite status to false
                 onFavoriteClick(currentNote) // Notify the parent about the change
             }
+        }
+
+        //to navigate from favorite notes to edit note
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, MainActivity::class.java)
+            intent.putExtra("note", currentNote)
+            intent.putExtra("source", "favorite")
+            holder.itemView.context.startActivity(intent)
         }
     }
 

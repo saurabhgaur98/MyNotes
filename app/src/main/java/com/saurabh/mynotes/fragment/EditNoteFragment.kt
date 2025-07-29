@@ -1,6 +1,7 @@
 package com.saurabh.mynotes.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -41,6 +42,11 @@ class EditNoteFragment : Fragment(R.layout.fragment_edit_note), MenuProvider {
     ): View? {
         // Inflate the layout for this fragment
         editNoteBinding = FragmentEditNoteBinding.inflate(inflater, container, false)
+
+        val note = arguments?.getParcelable<Note>("note")
+        binding.editNoteTitle.setText(note?.noteTitle)
+        binding.editNoteDesc.setText(note?.noteDesc)
+
         return binding.root
     }
 
@@ -61,9 +67,16 @@ class EditNoteFragment : Fragment(R.layout.fragment_edit_note), MenuProvider {
             val noteDesc = binding.editNoteDesc.text.toString().trim()
 
             if(noteTitle.isNotEmpty()){
-                val note = Note(currentNote.id, noteTitle, noteDesc)
+                val note = Note(currentNote.id, noteTitle, noteDesc, currentNote.isFavorite)
                 notesViewModel.updateNote(note)
-                view.findNavController().popBackStack(R.id.homeFragment, false)
+
+                Toast.makeText(context, "Note Updated Successfully", Toast.LENGTH_SHORT).show()
+                val source = arguments?.getString("source")
+                if (source == "favorite") {
+                    requireActivity().finish()
+                }else{
+                    view.findNavController().popBackStack(R.id.homeFragment, false)
+                }
             }else{
                 Toast.makeText(context, "Please Enter Note Title", Toast.LENGTH_SHORT).show()
             }

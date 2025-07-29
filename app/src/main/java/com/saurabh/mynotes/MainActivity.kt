@@ -10,6 +10,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.saurabh.mynotes.database.NoteDatabase
 import com.saurabh.mynotes.database.NoteDatabase.Companion.invoke
+import com.saurabh.mynotes.fragment.EditNoteFragment
+import com.saurabh.mynotes.model.Note
 import com.saurabh.mynotes.repository.NoteRepository
 import com.saurabh.mynotes.viewmodel.NoteViewModel
 import com.saurabh.mynotes.viewmodel.NoteViewModelFactory
@@ -24,6 +26,22 @@ class MainActivity : AppCompatActivity() {
 
 
         setupViewModel()
+
+        val note = intent.getParcelableExtra<Note>("note")
+        val source = intent.getStringExtra("source")
+
+        if (source == "favorite" || note != null) {
+            val fragment = EditNoteFragment()
+            val bundle = Bundle().apply {
+                putParcelable("note", note)
+                putString("source", "favorite")
+            }
+            fragment.arguments = bundle
+
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView, fragment)
+                .commit()
+        }
     }
 
     private fun setupViewModel(){

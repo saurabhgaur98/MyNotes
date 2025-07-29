@@ -17,7 +17,7 @@ import com.saurabh.mynotes.viewmodel.NoteViewModel
 import com.saurabh.mynotes.viewmodel.NoteViewModelFactory
 import com.saurabh.mynotes.databinding.ActivityFavoriteNotesBinding
 
-class FavoriteNotes : AppCompatActivity() {
+class FavoriteNotes : AppCompatActivity(){
 
     private var _binding: ActivityFavoriteNotesBinding? = null
     private val binding get() = _binding!!
